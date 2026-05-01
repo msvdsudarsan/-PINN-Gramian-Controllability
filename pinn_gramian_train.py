@@ -2,7 +2,7 @@
 pinn_gramian_train.py
 ---------------------
 Physics-Informed Neural Network for Reachability Gramian Verification.
-
+ 
 Paper: "Physics-Informed Neural Network Verification of Kalman–Hewer
         Controllability Gramians in Singular Bilinear Periodic Matrix
         Differential Systems"
