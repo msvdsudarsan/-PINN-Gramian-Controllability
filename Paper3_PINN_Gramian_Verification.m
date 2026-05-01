@@ -354,7 +354,7 @@ fprintf('--------------------------------------------------\n');
 if all_ok
     fprintf('ALL VALUES: OK ✓\n');
 else
-    fprintf('Some values: CHECK\n');
+    fprintf('Some values: CHECK\n'); 
 end
 fprintf('==============================================\n');
 fprintf('\nAll 3 figures saved as PDF.\n');
