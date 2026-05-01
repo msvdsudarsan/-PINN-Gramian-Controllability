@@ -2,7 +2,7 @@
 utils.py
 --------
 Helper utilities for PINN Gramian verification.
-Paper: Neural Networks (Elsevier) — Submitted April 2026
+Paper: Neural Networks (Elsevier) — Submitted April 2026 
 Authors: Madhyannapu & Pradheep Kumar S.
 """
 
