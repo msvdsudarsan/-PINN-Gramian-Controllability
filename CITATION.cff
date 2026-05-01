@@ -16,14 +16,14 @@ authors:
       Neerukonda, Mangalagiri, Guntur 522240, Andhra Pradesh, India
     email: sravanampradheepkumar@gmail.com
 title: >-
-  PINN-Gramian-Neural-Networks: MATLAB and Python codes for
+  -PINN-Gramian-Controllability: MATLAB and Python codes for
   Physics-Informed Neural Network Verification of Kalman-Hewer
   Controllability Gramians in Singular Bilinear Periodic Matrix
   Differential Systems
 version: 1.0.0
 date-released: "2026-04-30"
-url: "https://github.com/msvdsudarsan/PINN-Gramian-Neural-Networks"
-repository-code: "https://github.com/msvdsudarsan/PINN-Gramian-Neural-Networks"
+url: "https://github.com/msvdsudarsan/-PINN-Gramian-Controllability"
+repository-code: "https://github.com/msvdsudarsan/-PINN-Gramian-Controllability"
 license: MIT
 keywords:
   - physics-informed neural networks
