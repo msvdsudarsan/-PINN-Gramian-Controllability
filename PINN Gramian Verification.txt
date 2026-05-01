@@ -3,7 +3,7 @@ PAPER 3: PINN Gramian Verification
 
 Target values from Paper 3:
   e_rel         = 6.3e-04
-  rank_pred     = 2
+  rank_pred     = 2 
   eps*_hat      = 0.169
   eps*_ref      = 0.170
   thresh_error  = 0.001
