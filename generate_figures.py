@@ -5,7 +5,7 @@ Generates Figures 1, 2, 3 for the paper.
 Requires: pinn_gramian_checkpoint.pt (run pinn_gramian_train.py first)
           or runs a fast approximate simulation for demonstration.
 
-Figure 1: Training loss L(theta) vs iterations (log scale)
+Figure 1: Training loss L(theta) vs iterations (log scale) 
 Figure 2: PINN-predicted vs reference Gramian singular values vs t
 Figure 3: Pointwise relative approximation error vs t
 """
