@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper as below."
+authors:
+  - family-names: Madhyannapu
+    given-names: Sri Venkata Durga Sudarsan
+    orcid: "https://orcid.org/0009-0001-2126-6428"
+    affiliation: >-
+      Freshmen Engineering Department, Dr. RVR NRI Institute of Technology
+      (Deemed to be University), Pothavarappadu, Agiripalli,
+      Eluru District 521212, Andhra Pradesh, India
+    email: msvdsudarsan@gmail.com
+  - family-names: Kumar S.
+    given-names: Pradheep
+    affiliation: >-
+      School of Basic Sciences, SRM University AP,
+      Neerukonda, Mangalagiri, Guntur 522240, Andhra Pradesh, India
+    email: sravanampradheepkumar@gmail.com
+title: >-
+  PINN-Gramian-Neural-Networks: MATLAB and Python codes for
+  Physics-Informed Neural Network Verification of Kalman-Hewer
+  Controllability Gramians in Singular Bilinear Periodic Matrix
+  Differential Systems
+version: 1.0.0
+date-released: "2026-04-30"
+url: "https://github.com/msvdsudarsan/PINN-Gramian-Neural-Networks"
+repository-code: "https://github.com/msvdsudarsan/PINN-Gramian-Neural-Networks"
+license: MIT
+keywords:
+  - physics-informed neural networks
+  - reachability Gramian
+  - singular bilinear systems
+  - Kalman-Hewer controllability
+  - Cholesky reparametrisation
+  - Melnikov threshold
+  - scientific machine learning
+  - optimal control synthesis
+  - MATLAB
+  - PyTorch
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Madhyannapu
+      given-names: Sri Venkata Durga Sudarsan
+      orcid: "https://orcid.org/0009-0001-2126-6428"
+    - family-names: Kumar S.
+      given-names: Pradheep
+  title: >-
+    Physics-Informed Neural Network Verification of Kalman-Hewer
+    Controllability Gramians in Singular Bilinear Periodic Matrix
+    Differential Systems
+  journal: Neural Networks
+  publisher: Elsevier
+  issn: "0893-6080"
+  year: 2026
+  notes: Submitted April 2026
