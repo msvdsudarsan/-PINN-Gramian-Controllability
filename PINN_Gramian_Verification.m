@@ -1,7 +1,7 @@
 %% ============================================================
 %% PAPER 3 — PINN Verification of Kalman-Hewer Gramians
 %% Save as: Paper3_PINN_Gramian_Verification.m
-%%
+%% 
 %% TARGET VALUES (Table from Paper 3):
 %%   Relative Frobenius error  = 6.3e-4
 %%   Predicted rank            = 2
