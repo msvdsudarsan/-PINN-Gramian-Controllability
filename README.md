@@ -1,4 +1,4 @@
-## PINN-Gramian-Neural-Networks
+## -PINN-Gramian-Controllability
 
 **Physics-Informed Neural Network Verification of Kalman–Hewer Controllability Gramians in Singular Bilinear Periodic Matrix Differential Systems**
 
