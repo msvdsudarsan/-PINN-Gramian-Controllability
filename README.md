@@ -1,6 +1,7 @@
 ## -PINN-Gramian-Controllability
 
 **Physics-Informed Neural Network Verification of Kalman–Hewer Controllability Gramians in Singular Bilinear Periodic Matrix Differential Systems**
+DOI: 10.5281/zenodo.20196769
 
 **Authors:** Sri Venkata Durga Sudarsan Madhyannapu and Pradheep Kumar S.  
 **Journal:** *Neural Networks*, Elsevier (Submitted April 2026)  
