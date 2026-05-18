@@ -1,5 +1,5 @@
 """
-Paper 3 — PINN Gramian Verification — Figure Generator (V20)
+PINN Gramian Verification — Figure Generator 
 Reproduces exact MATLAB numerical values.
 Produces 3 clean PDF figures with NO data1/data2 artifacts.
 All legend entries are explicitly named; no auto-generated labels.
@@ -114,7 +114,7 @@ ax1.grid(True)
 ax1.set_axisbelow(True)
 
 fig1.tight_layout()
-fig1.savefig('/home/claude/Figs_V20/Paper3_Fig1_training_loss.pdf',
+fig1.savefig('/home/Fig1_training_loss.pdf',
              bbox_inches='tight', dpi=300)
 print("Figure 1 saved.")
 
@@ -158,7 +158,7 @@ ax2.grid(True)
 ax2.set_axisbelow(True)
 
 fig2.tight_layout()
-fig2.savefig('/home/claude/Figs_V20/Paper3_Fig2_pinn_vs_reference.pdf',
+fig2.savefig('/home/Fig2_pinn_vs_reference.pdf',
              bbox_inches='tight', dpi=300)
 print("Figure 2 saved.")
 
@@ -193,7 +193,7 @@ ax3.grid(True)
 ax3.set_axisbelow(True)
 
 fig3.tight_layout()
-fig3.savefig('/home/claude/Figs_V20/Paper3_Fig3_approximation_error.pdf',
+fig3.savefig('/home/Fig3_approximation_error.pdf',
              bbox_inches='tight', dpi=300)
 print("Figure 3 saved.")
 print("\nAll 3 figures generated — ZERO data1/data2 artifacts.")
