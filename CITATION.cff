@@ -5,25 +5,27 @@ authors:
     given-names: Sri Venkata Durga Sudarsan
     orcid: "https://orcid.org/0009-0001-2126-6428"
     affiliation: >-
-      Freshmen Engineering Department, Dr. RVR NRI Institute of Technology
-      (Deemed to be University), Pothavarappadu, Agiripalli,
-      Eluru District 521212, Andhra Pradesh, India
+      Department of Mathematics, School of Sciences, Humanities and Management,
+      Dr. RVR NRI Institute of Technology (Deemed to be University),
+      Pothavarappadu, Agiripalli, Vijayawada Rural 521212,
+      Andhra Pradesh, India
     email: msvdsudarsan@gmail.com
-  - family-names: Kumar S.
-    given-names: Pradheep
+  - family-names: Kumar
+    given-names: Sravanam Pradheep
     affiliation: >-
       School of Basic Sciences, SRM University AP,
       Neerukonda, Mangalagiri, Guntur 522240, Andhra Pradesh, India
     email: sravanampradheepkumar@gmail.com
 title: >-
-  -PINN-Gramian-Controllability: MATLAB and Python codes for
+  PINN-Gramian-Controllability: MATLAB and Python codes for
   Physics-Informed Neural Network Verification of Kalman-Hewer
   Controllability Gramians in Singular Bilinear Periodic Matrix
   Differential Systems
-version: 1.0.0
-date-released: "2026-04-30"
+version: 2.0.0
+date-released: "2026-05-18"
 url: "https://github.com/msvdsudarsan/-PINN-Gramian-Controllability"
 repository-code: "https://github.com/msvdsudarsan/-PINN-Gramian-Controllability"
+doi: "10.5281/zenodo.20196769"
 license: MIT
 keywords:
   - physics-informed neural networks
@@ -31,8 +33,10 @@ keywords:
   - singular bilinear systems
   - Kalman-Hewer controllability
   - Cholesky reparametrisation
+  - positive semi-definite manifold
   - Melnikov threshold
   - scientific machine learning
+  - operator learning
   - optimal control synthesis
   - MATLAB
   - PyTorch
@@ -42,8 +46,8 @@ preferred-citation:
     - family-names: Madhyannapu
       given-names: Sri Venkata Durga Sudarsan
       orcid: "https://orcid.org/0009-0001-2126-6428"
-    - family-names: Kumar S.
-      given-names: Pradheep
+    - family-names: Kumar
+      given-names: Sravanam Pradheep
   title: >-
     Physics-Informed Neural Network Verification of Kalman-Hewer
     Controllability Gramians in Singular Bilinear Periodic Matrix
@@ -52,4 +56,5 @@ preferred-citation:
   publisher: Elsevier
   issn: "0893-6080"
   year: 2026
-  notes: Submitted April 2026
+  notes: "Submitted May 2026"
+  doi: "10.5281/zenodo.20196769"
