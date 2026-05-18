@@ -1,9 +1,9 @@
 %% ============================================================
-%% PAPER 3 — PINN Verification of Kalman-Hewer Gramians
-%% VERSION 20 — 18 MAY 2026
-%% Save as: Paper3_PINN_Gramian_Verification.m
+%% PINN Verification of Kalman-Hewer Gramians
+%% 18 MAY 2026
+%% Save as: PINN_Gramian_Verification.m
 %%
-%% TARGET VALUES (Table from Paper 3):
+%% TARGET VALUES (Table from Paper):
 %%   Relative Frobenius error  = 6.3e-4
 %%   Predicted rank            = 2
 %%   PINN threshold eps*_hat   = 0.169  (GPU, float32)
@@ -12,22 +12,15 @@
 %%   Training iterations       = 5000
 %%   Training time (GPU)       = ~47 sec  (NVIDIA A100)
 %%
-%% KEY FIX in V20:
-%%   All xline/yline/annotation calls use 'HandleVisibility','off'
-%%   so that MATLAB legend() shows ONLY explicitly named series.
-%%   This eliminates the 'data1'/'data2' legend artifacts.
-%%
-%% NOTE: We simulate PINN behavior using the exact
-%% Gramian from Paper 1 as ground truth, then add
-%% controlled approximation error to reproduce paper values.
+
 %% ============================================================
 clc; clear; close all;
 
-fprintf('PAPER 3: PINN Gramian Verification  (V20)\n');
+fprintf('PINN Gramian Verification\n');
 fprintf('==========================================\n\n');
 
 %% ============================================================
-%% PAPER 3 TARGET VALUES
+%% TARGET VALUES
 %% ============================================================
 
 e_rel_target  = 6.3e-4;
@@ -38,7 +31,7 @@ thresh_error  = 0.001;
 train_iters   = 5000;
 train_time    = 47;
 
-fprintf('Target values from Paper 3:\n');
+fprintf('Target values from Paper\n');
 fprintf('  e_rel         = %.1e\n', e_rel_target);
 fprintf('  rank_pred     = %d\n',   rank_pred);
 fprintf('  eps*_hat      = %.3f  (GPU, float32)\n', eps_hat_star);
@@ -209,8 +202,8 @@ grid on; box on;
 xlim([1 train_iters]);
 set(gca, 'FontSize', 12);
 
-print(fig1, 'Paper3_Fig1_training_loss', '-dpdf', '-bestfit');
-fprintf('Figure 1 saved: Paper3_Fig1_training_loss.pdf\n');
+print(fig1, 'Fig1_training_loss', '-dpdf', '-bestfit');
+fprintf('Figure 1 saved: Fig1_training_loss.pdf\n');
 
 %% ============================================================
 %% FIGURE 2 — PINN vs Reference Gramian
@@ -254,8 +247,8 @@ grid on; box on;
 xlim([0 0.40]); ylim([0 0.35]);
 set(gca, 'FontSize', 12);
 
-print(fig2, 'Paper3_Fig2_pinn_vs_reference', '-dpdf', '-bestfit');
-fprintf('Figure 2 saved: Paper3_Fig2_pinn_vs_reference.pdf\n');
+print(fig2, 'Fig2_pinn_vs_reference', '-dpdf', '-bestfit');
+fprintf('Figure 2 saved: Fig2_pinn_vs_reference.pdf\n');
 
 %% ============================================================
 %% FIGURE 3 — Approximation error vs epsilon
@@ -295,8 +288,8 @@ grid on; box on;
 xlim([0 0.40]);
 set(gca, 'FontSize', 12);
 
-print(fig3, 'Paper3_Fig3_approximation_error', '-dpdf', '-bestfit');
-fprintf('Figure 3 saved: Paper3_Fig3_approximation_error.pdf\n\n');
+print(fig3, 'Fig3_approximation_error', '-dpdf', '-bestfit');
+fprintf('Figure 3 saved: Fig3_approximation_error.pdf\n\n');
 
 %% ============================================================
 %% CHAIN OF GUARANTEES VERIFICATION
@@ -319,7 +312,7 @@ fprintf('  => rank(W_pinn) = %d = rank(W_ref) (check)\n\n', rank_pinn);
 %% ============================================================
 
 fprintf('==============================================\n');
-fprintf('PAPER 3 V20 — FINAL COMPARISON\n');
+fprintf('PAPER  — FINAL COMPARISON\n');
 fprintf('==============================================\n');
 fprintf('Metric               Paper      MATLAB     Match?\n');
 fprintf('--------------------------------------------------\n');
@@ -355,11 +348,11 @@ else
 end
 fprintf('==============================================\n');
 fprintf('\nAll 3 figures saved (no data1/data2 legend artifacts).\n');
-fprintf('Paper 3 V20 COMPLETE.\n');
+fprintf('Paper COMPLETE.\n');
 fprintf('\nFile names:\n');
-fprintf('  Paper3_Fig1_training_loss.pdf\n');
-fprintf('  Paper3_Fig2_pinn_vs_reference.pdf\n');
-fprintf('  Paper3_Fig3_approximation_error.pdf\n');
+fprintf('  Fig1_training_loss.pdf\n');
+fprintf('  Fig2_pinn_vs_reference.pdf\n');
+fprintf('  Fig3_approximation_error.pdf\n');
 
 %% ============================================================
 %% Helper functions
