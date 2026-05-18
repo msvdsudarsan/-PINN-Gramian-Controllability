@@ -1,4 +1,4 @@
-PAPER 3: PINN Gramian Verification
+PINN Gramian Verification
 ====================================
 
 Target values from Paper 3:
@@ -51,9 +51,9 @@ TABLE: PINN Performance Summary
   Training time (GPU)         ~47 sec    (~47s)
 --------------------------------------------------
 
-Figure 1 saved: Paper3_Fig1_training_loss.pdf
-Figure 2 saved: Paper3_Fig2_pinn_vs_reference.pdf
-Figure 3 saved: Paper3_Fig3_approximation_error.pdf
+Figure 1 saved: Fig1_training_loss.pdf
+Figure 2 saved: Fig2_pinn_vs_reference.pdf
+Figure 3 saved: Fig3_approximation_error.pdf
 
 CHAIN OF GUARANTEES (Theorem chain):
 --------------------------------------
@@ -64,7 +64,7 @@ CHAIN OF GUARANTEES (Theorem chain):
   => rank(W_pinn) = 2 = rank(W_ref) ✓
 
 ==============================================
-PAPER 3 — FINAL COMPARISON
+FINAL COMPARISON
 ==============================================
 Metric               Paper      MATLAB     Match?
 --------------------------------------------------
@@ -78,11 +78,11 @@ ALL VALUES: OK ✓
 ==============================================
 
 All 3 figures saved as PDF.
-Paper 3 COMPLETE! Proceed to Paper 4.
+
 
 File names:
-  Paper3_Fig1_training_loss.pdf
-  Paper3_Fig2_pinn_vs_reference.pdf
-  Paper3_Fig3_approximation_error.pdf
+  Fig1_training_loss.pdf
+  Fig2_pinn_vs_reference.pdf
+  Fig3_approximation_error.pdf
 >> 
 >> 
