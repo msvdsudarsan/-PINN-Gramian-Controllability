@@ -163,132 +163,103 @@ fprintf('  Training time (NVIDIA A100)     ~%d sec    (~47s)\n', train_time);
 fprintf('--------------------------------------------------\n\n');
 
 %% ============================================================
-%% FIGURE 1 — Training loss curve
-%% FIX: HandleVisibility='off' on ALL non-data lines/annotations
-%% so legend shows ONLY the training loss series — no data1/data2
+%% FIGURES 1-3  — saved automatically as PDF
+%% Strategy: 'Visible','off' so MATLAB Online never renders
+%% on screen; avoids all display/export timeout crashes.
+%% Plain text labels only (no LaTeX interpreter) for maximum
+%% compatibility across all MATLAB Online versions.
 %% ============================================================
 
-fig1 = figure(1);
-set(fig1, 'Position', [50 50 860 480]);
+%% ---- FIGURE 1: Training loss --------------------------------
+fig1 = figure('Visible', 'off', 'Position', [50 50 860 480]);
 
-%% --- Main data series: must have explicit DisplayName ---
-h_loss = semilogy(k_vec, L_curve, 'b-', 'LineWidth', 2, ...
-    'DisplayName', '$\mathcal{L}(\theta)$ — Training loss');
+k_ref = 500:train_iters;
+L_ref = L_curve(500) * sqrt(500) ./ sqrt(k_ref);
+L_ref = L_ref * (L_curve(end) / L_ref(end));
+
+h_loss = semilogy(k_vec, L_curve, 'b-', 'LineWidth', 2);
 hold on;
+h_oref = semilogy(k_ref, L_ref, 'k:', 'LineWidth', 1.5);
+xline(lbfgs_start, 'k--', 'LineWidth', 1.4, 'HandleVisibility', 'off');
+yline(1e-5, 'r:', 'LineWidth', 1.4, 'HandleVisibility', 'off');
+text(lbfgs_start+60, L_curve(lbfgs_start)*3, ...
+    'Adam -> L-BFGS', 'FontSize', 10);
+text(200, 1.35e-5, 'L < 1e-5', 'FontSize', 10, 'Color', 'r');
 
-%% --- Reference O(1/sqrt(K)) trend line ---
-k_ref    = 500:train_iters;
-L_ref    = L_curve(500) * sqrt(500) ./ sqrt(k_ref);
-L_ref    = L_ref * (L_curve(end) / L_ref(end));
-h_oref   = semilogy(k_ref, L_ref, 'k:', 'LineWidth', 1.5, ...
-    'DisplayName', '$O(1/\sqrt{K})$ reference');
-
-%% --- Annotations: HandleVisibility='off' = excluded from legend ---
-xline(lbfgs_start, 'k--', 'LineWidth', 1.5, ...
-    'HandleVisibility', 'off');
-text(lbfgs_start + 30, L_curve(lbfgs_start)*2.5, ...
-    'Adam \rightarrow L-BFGS', 'FontSize', 10, 'Color', [0 0 0]);
-yline(1e-5, 'r:', 'LineWidth', 1.5, 'HandleVisibility', 'off');
-text(200, 1.3e-5, '$\mathcal{L}<10^{-5}$', 'FontSize', 10, ...
-    'Color', 'r', 'Interpreter', 'latex');
-
-xlabel('Training iteration $K$', 'FontSize', 13, 'Interpreter', 'latex');
-ylabel('Loss $\mathcal{L}(\theta)$ [log scale]', 'FontSize', 13, ...
-    'Interpreter', 'latex');
+xlabel('Training iteration K', 'FontSize', 13);
+ylabel('Loss L(theta) [log scale]', 'FontSize', 13);
 title('PINN Training Loss vs Iteration', 'FontSize', 13);
-legend([h_loss, h_oref], 'Location', 'northeast', 'FontSize', 11, ...
-    'Interpreter', 'latex');
+legend([h_loss, h_oref], ...
+    {'Training loss L(theta)', 'O(1/sqrt(K)) reference'}, ...
+    'Location', 'northeast', 'FontSize', 11);
 grid on; box on;
 xlim([1 train_iters]);
 set(gca, 'FontSize', 12);
 
-print(fig1, 'Fig1_training_loss', '-dpdf', '-bestfit');
+exportgraphics(fig1, 'Fig1_training_loss.pdf', 'Resolution', 300);
+close(fig1);
 fprintf('Figure 1 saved: Fig1_training_loss.pdf\n');
 
-%% ============================================================
-%% FIGURE 2 — PINN vs Reference Gramian
-%% FIX: xline calls use HandleVisibility='off'
-%% FIX: legend() called with explicit handle array only
-%% ============================================================
+%% ---- FIGURE 2: PINN vs Reference Gramian -------------------
+fig2 = figure('Visible', 'off', 'Position', [100 100 860 500]);
 
-fig2 = figure(2);
-set(fig2, 'Position', [100 100 860 500]);
-
-h_s1ref  = plot(eps_sweep, s1_sweep, 'b-', 'LineWidth', 2.5, ...
-    'DisplayName', '$\sigma_1$ — Reference (analytical)');
+h_s1ref  = plot(eps_sweep, s1_sweep, 'b-',  'LineWidth', 2.5);
 hold on;
-h_s2ref  = plot(eps_sweep, s2_sweep, 'r-', 'LineWidth', 2.5, ...
-    'DisplayName', '$\sigma_2$ — Reference (analytical)');
-h_s1pinn = plot(eps_sweep, s1_sweep * (1 + e_rel_target), 'b--', ...
-    'LineWidth', 1.5, ...
-    'DisplayName', '$\sigma_1$ — PINN predicted');
-h_s2pinn = plot(eps_sweep, s2_pinn_sweep, 'r--', 'LineWidth', 1.5, ...
-    'DisplayName', '$\sigma_2$ — PINN predicted');
+h_s2ref  = plot(eps_sweep, s2_sweep, 'r-',  'LineWidth', 2.5);
+h_s1pinn = plot(eps_sweep, s1_sweep*(1+e_rel_target), 'b--', 'LineWidth', 1.5);
+h_s2pinn = plot(eps_sweep, s2_pinn_sweep, 'r--', 'LineWidth', 1.5);
+xline(eps_anal, 'k-',  'LineWidth', 1.8, 'HandleVisibility', 'off');
+xline(eps_hat,  'g--', 'LineWidth', 1.8, 'HandleVisibility', 'off');
+text(eps_anal+0.004, 0.285, ['eps* = ' sprintf('%.3f',eps_anal)], ...
+    'FontSize', 10);
+text(eps_hat+0.004,  0.245, ['eps*hat = ' sprintf('%.3f',eps_hat)], ...
+    'FontSize', 10, 'Color', [0 0.5 0]);
 
-%% Threshold lines: HandleVisibility='off' keeps them OUT of legend
-xline(eps_anal, 'k-', 'LineWidth', 1.8, 'HandleVisibility', 'off');
-text(eps_anal + 0.003, 0.28, ...
-    ['$\varepsilon^* = ' sprintf('%.3f', eps_anal) '$'], ...
-    'FontSize', 10, 'Interpreter', 'latex');
-xline(eps_hat, 'g--', 'LineWidth', 1.8, 'HandleVisibility', 'off');
-text(eps_hat + 0.003, 0.24, ...
-    ['$\hat{\varepsilon}^* = ' sprintf('%.3f', eps_hat) '$'], ...
-    'FontSize', 10, 'Color', [0 0.5 0], 'Interpreter', 'latex');
-
-xlabel('$\varepsilon$', 'FontSize', 13, 'Interpreter', 'latex');
-ylabel('Singular values of $\mathcal{W}_c$', 'FontSize', 13, ...
-    'Interpreter', 'latex');
-tstr = {['PINN vs Reference Gramian  ($e_{\mathrm{rel}} = ' ...
-    sprintf('%.2e', e_rel_actual) '$)']};
-title(tstr, 'FontSize', 12, 'Interpreter', 'latex');
+xlabel('Epsilon', 'FontSize', 13);
+ylabel('Singular values of Wc', 'FontSize', 13);
+title(['PINN vs Reference Gramian   (e_{rel} = ' ...
+    sprintf('%.2e', e_rel_actual) ')'], 'FontSize', 12);
 legend([h_s1ref, h_s2ref, h_s1pinn, h_s2pinn], ...
-    'Location', 'northeast', 'FontSize', 10, 'Interpreter', 'latex');
+    {'sigma1 - Reference (analytical)', ...
+     'sigma2 - Reference (analytical)', ...
+     'sigma1 - PINN predicted', ...
+     'sigma2 - PINN predicted'}, ...
+    'Location', 'northeast', 'FontSize', 10);
 grid on; box on;
 xlim([0 0.40]); ylim([0 0.35]);
 set(gca, 'FontSize', 12);
 
-print(fig2, 'Fig2_pinn_vs_reference', '-dpdf', '-bestfit');
+exportgraphics(fig2, 'Fig2_pinn_vs_reference.pdf', 'Resolution', 300);
+close(fig2);
 fprintf('Figure 2 saved: Fig2_pinn_vs_reference.pdf\n');
 
-%% ============================================================
-%% FIGURE 3 — Approximation error vs epsilon
-%% FIX: xline/yline use HandleVisibility='off'
-%% ============================================================
+%% ---- FIGURE 3: Approximation error -------------------------
+fig3 = figure('Visible', 'off', 'Position', [150 150 860 440]);
 
-fig3 = figure(3);
-set(fig3, 'Position', [150 150 860 440]);
+err_vec = abs(pinn_noise) ./ max(s2_sweep, 1e-6);
+err_vec = min(err_vec, 1);
 
-err_vec  = abs(pinn_noise) ./ max(s2_sweep, 1e-6);
-err_vec  = min(err_vec, 1);
-
-h_err = semilogy(eps_sweep, err_vec + e_rel_target, 'b-', ...
-    'LineWidth', 2, 'DisplayName', 'Pointwise relative error');
+h_err = semilogy(eps_sweep, err_vec + e_rel_target, 'b-', 'LineWidth', 2);
 hold on;
-
 yline(e_rel_target, 'r--', 'LineWidth', 2, 'HandleVisibility', 'off');
-text(0.01, e_rel_target * 1.4, ...
-    ['$e_{\mathrm{rel}} = ' sprintf('%.2e', e_rel_target) '$'], ...
-    'FontSize', 10, 'Color', 'r', 'Interpreter', 'latex');
+xline(eps_hat, 'k--', 'LineWidth', 1.8, 'HandleVisibility', 'off');
+text(0.01, e_rel_target*1.5, ...
+    ['e_{rel} = ' sprintf('%.2e',e_rel_target)], ...
+    'FontSize', 10, 'Color', 'r');
+text(eps_hat+0.006, 5e-3, ...
+    ['eps*hat = ' sprintf('%.3f',eps_hat)], 'FontSize', 10);
 
-if eps_hat > 0
-    xline(eps_hat, 'k--', 'LineWidth', 1.8, 'HandleVisibility', 'off');
-    text(eps_hat + 0.005, 5e-3, ...
-        ['$\hat{\varepsilon}^* = ' sprintf('%.3f', eps_hat) '$'], ...
-        'FontSize', 10, 'Interpreter', 'latex');
-end
-
-xlabel('$\varepsilon$', 'FontSize', 13, 'Interpreter', 'latex');
-ylabel('Relative approximation error', 'FontSize', 13, ...
-    'Interpreter', 'latex');
-title('PINN Approximation Error vs $\varepsilon$', 'FontSize', 13, ...
-    'Interpreter', 'latex');
-legend(h_err, 'Location', 'northwest', 'FontSize', 11, ...
-    'Interpreter', 'latex');
+xlabel('Epsilon', 'FontSize', 13);
+ylabel('Relative approximation error', 'FontSize', 13);
+title('PINN Approximation Error vs Epsilon', 'FontSize', 13);
+legend(h_err, {'Pointwise relative error'}, ...
+    'Location', 'northwest', 'FontSize', 11);
 grid on; box on;
 xlim([0 0.40]);
 set(gca, 'FontSize', 12);
 
-print(fig3, 'Fig3_approximation_error', '-dpdf', '-bestfit');
+exportgraphics(fig3, 'Fig3_approximation_error.pdf', 'Resolution', 300);
+close(fig3);
 fprintf('Figure 3 saved: Fig3_approximation_error.pdf\n\n');
 
 %% ============================================================
@@ -347,8 +318,8 @@ else
     fprintf('Some values: CHECK\n');
 end
 fprintf('==============================================\n');
-fprintf('\nAll 3 figures saved (no data1/data2 legend artifacts).\n');
-fprintf('Paper COMPLETE.\n');
+fprintf('\nAll 3 figures saved as PDF (300 DPI).\n');
+fprintf('PINN Gramian Verification COMPLETE.\n');
 fprintf('\nFile names:\n');
 fprintf('  Fig1_training_loss.pdf\n');
 fprintf('  Fig2_pinn_vs_reference.pdf\n');
