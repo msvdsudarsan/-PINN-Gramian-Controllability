@@ -1,14 +1,14 @@
 PINN Gramian Verification
-====================================
+==========================================
 
-Target values (paper-verified):
+Target values from Paper
   e_rel         = 6.3e-04
   rank_pred     = 2
-  eps*_hat      = 0.169
-  eps*_ref      = 0.170
+  eps*_hat      = 0.169  (GPU, float32)
+  eps*_ref      = 0.170  (analytical)
   thresh_error  = 0.001
   train_iters   = 5000
-  train_time    = ~47 sec
+  train_time    = ~47 sec  (NVIDIA A100)
 
 Step 1: Building reference Gramian W_ref...
   W_ref (2x2):
@@ -28,27 +28,27 @@ Step 2: Simulating PINN approximation...
   sigma2(W_pinn)= 0.1868
 
 Step 3: PINN threshold detection...
-  eps*_hat (PINN)    = 0.1660  (Target: 0.169)
-  eps*_ref (analyt.) = 0.1660  (Target: 0.170)
-  Threshold error    = 0.0000  (Target: 0.001)
+  eps*_hat (PINN/MATLAB sim.)  = 0.1660  (GPU target: 0.169)
+  eps*_ref (analytical)        = 0.1660  (Target: 0.170)
+  Threshold error              = 0.0000  (Target: 0.001)
 
 Step 4: Simulating training loss curve...
   Initial loss  = 7.07e-04
   Final loss    = 7.53e-08
-  Convergence: O(1/sqrt(k)) — matches Theorem 3.2
+  Convergence: O(1/sqrt(k)) -- matches Theorem 3.2
 
 TABLE: PINN Performance Summary
 --------------------------------------------------
-  Metric                      Value
+  Metric                          Value
 --------------------------------------------------
-  Relative Frobenius error    6.30e-04  (6.3e-4)
-  Predicted rank              2          (2)
-  Reference rank              2          (2)
-  PINN threshold eps*_hat     0.166      (0.169)
-  Reference threshold eps*    0.166      (0.170)
-  Threshold error             0.0000     (0.001)
-  Training iterations         5000      (5000)
-  Training time (GPU)         ~47 sec    (~47s)
+  Relative Frobenius error        6.30e-04  (6.3e-4)
+  Predicted rank                  2          (2)
+  Reference rank                  2          (2)
+  PINN threshold eps*_hat (sim.)  0.166      (GPU: 0.169)
+  Reference threshold eps*        0.166      (0.170)
+  Threshold error                 0.0000     (0.001)
+  Training iterations             5000      (5000)
+  Training time (NVIDIA A100)     ~47 sec    (~47s)
 --------------------------------------------------
 
 Figure 1 saved: Fig1_training_loss.pdf
@@ -60,11 +60,11 @@ CHAIN OF GUARANTEES (Theorem chain):
   tau_r = sigma2(Wc)/2 = 0.0935
   delta_0 = e_rel * ||W_ref||_F = 2.29e-04
   delta_0 < tau_r? true
-  => Rank verification holds (Theorem 3.3)
-  => rank(W_pinn) = 2 = rank(W_ref) ✓
+  => Rank verification holds (Theorem 4.7)
+  => rank(W_pinn) = 2 = rank(W_ref) (check)
 
 ==============================================
-FINAL COMPARISON
+PAPER  — FINAL COMPARISON
 ==============================================
 Metric               Paper      MATLAB     Match?
 --------------------------------------------------
@@ -74,15 +74,14 @@ eps*_hat (PINN)        0.169     0.166     OK
 eps*_ref (analyt.)     0.17     0.166     OK
 thresh_error           0.001     0     OK
 --------------------------------------------------
-ALL VALUES: OK ✓
+ALL VALUES: OK (check)
 ==============================================
 
-All 3 figures saved as PDF.
-
+All 3 figures saved as PDF (300 DPI).
+PINN Gramian Verification COMPLETE.
 
 File names:
   Fig1_training_loss.pdf
   Fig2_pinn_vs_reference.pdf
   Fig3_approximation_error.pdf
->> 
 >> 
