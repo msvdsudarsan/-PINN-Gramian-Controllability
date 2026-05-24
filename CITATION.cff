@@ -23,7 +23,7 @@ title: >-
   Differential Systems
 version: 2.0.0
 date-released: "2026-05-18"
-url: "https://github.com/msvdsudarsan/-PINN-Gramian-Controllability"
+url: "https://github.com/msvdsudarsan/PINN-Gramian-Controllability"
 repository-code: "https://github.com/msvdsudarsan/-PINN-Gramian-Controllability"
 doi: "10.5281/zenodo.20196769"
 license: MIT
